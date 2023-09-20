@@ -1,10 +1,15 @@
 {
   "name": "pixel-crypt",
-  "version": "0.0.1",
-  "description": "Simple encryption algorithm to secure alphanumeric input.",
-  "main": "./build/index.js",
+  "version": "0.1.10",
+  "description": "Simple two-way encryption algorithm to secure strings input.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
   "scripts": {
-    "build": "tsc"
+    "dev": "tsc",
+    "prepublishOnly": "tsc"
   },
   "repository": {
     "type": "git",
