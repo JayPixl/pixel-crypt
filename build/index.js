@@ -39,8 +39,7 @@ const swapChar = (str, fromIndex, toIndex) => {
 const stringToLongNumber = (inputString) => {
     let longNumber = '';
     [...inputString].map(i => {
-        var _a;
-        let codePoint = ((_a = i.codePointAt(0)) === null || _a === void 0 ? void 0 : _a.toString()) || '';
+        let codePoint = i.codePointAt(0)?.toString() || '';
         while (codePoint.length < 6) {
             codePoint = "0" + codePoint;
         }
@@ -98,14 +97,14 @@ const formatSeed = (seed) => {
     };
 };
 const modifyCharBySeed = (char, seed, modifier = 1) => {
-    let addedIndex = (alphaMap === null || alphaMap === void 0 ? void 0 : alphaMap.indexOf(char)) + ((alphaMap === null || alphaMap === void 0 ? void 0 : alphaMap.indexOf(seed)) * modifier);
+    let addedIndex = alphaMap?.indexOf(char) + (alphaMap?.indexOf(seed) * modifier);
     if (addedIndex >= alphaMap.length) {
         addedIndex -= alphaMap.length;
     }
     if (addedIndex < 0) {
         addedIndex += alphaMap.length;
     }
-    const newChar = alphaMap === null || alphaMap === void 0 ? void 0 : alphaMap[addedIndex];
+    const newChar = alphaMap?.[addedIndex];
     if (newChar) {
         return newChar;
     }
@@ -145,7 +144,7 @@ const decompactZeroes = (number) => {
     debug && console.log(`STARTING DECOMPACT: ${number}`);
     let newArr = [];
     for (let i = 0; i < number.length; i++) {
-        if (number[i] === "0" && (number === null || number === void 0 ? void 0 : number[i - 2]) + (number === null || number === void 0 ? void 0 : number[i - 3]) !== "00" && number[i - 1] !== "0") {
+        if (number[i] === "0" && number?.[i - 2] + number?.[i - 3] !== "00" && number[i - 1] !== "0") {
             let chunk = "";
             let times = number[i + 1] === "0" ? Number(number[i + 2] + number[i + 3]) : Number(number[i + 1]);
             for (var ii = 0; ii < times; ii++) {
@@ -154,7 +153,7 @@ const decompactZeroes = (number) => {
             newArr.push(chunk);
         }
         else {
-            if (((number === null || number === void 0 ? void 0 : number[i - 1]) !== "0" && (number === null || number === void 0 ? void 0 : number[i - 2]) + (number === null || number === void 0 ? void 0 : number[i - 3]) !== "00") || ((number === null || number === void 0 ? void 0 : number[i - 1]) === "0" && (number === null || number === void 0 ? void 0 : number[i - 3]) + (number === null || number === void 0 ? void 0 : number[i - 4]) === "00")) {
+            if ((number?.[i - 1] !== "0" && number?.[i - 2] + number?.[i - 3] !== "00") || (number?.[i - 1] === "0" && number?.[i - 3] + number?.[i - 4] === "00")) {
                 newArr.push(number[i]);
             }
         }
@@ -183,7 +182,7 @@ const pixelate = (string, seed) => {
         };
     let workingString = number;
     [...formattedSeed].map(char => {
-        workingString = (operations === null || operations === void 0 ? void 0 : operations[(alphaMap.indexOf(char) % Object.values(operations).length)]).call(operations, workingString, "F", alphaMap.indexOf(char));
+        workingString = (operations?.[(alphaMap.indexOf(char) % Object.values(operations).length)])(workingString, "F", alphaMap.indexOf(char));
     });
     debug && console.log(`BEFORE COMPACT: ${workingString}`);
     return {
@@ -199,7 +198,7 @@ const unpixelate = (pixel, seed) => {
     let workingString = decrompressPixel(pixel);
     debug && console.log(`AFTER COMPACT: ${workingString}`);
     [...formattedSeed].reverse().map(char => {
-        workingString = (operations === null || operations === void 0 ? void 0 : operations[(alphaMap.indexOf(char) % Object.values(operations).length)]).call(operations, workingString, "B", alphaMap.indexOf(char));
+        workingString = (operations?.[(alphaMap.indexOf(char) % Object.values(operations).length)])(workingString, "B", alphaMap.indexOf(char));
     });
     let string = longNumberToString(workingString);
     return {
