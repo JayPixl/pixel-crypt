@@ -188,8 +188,8 @@ const decrompressPixel: (pixel: string) => string = (pixel) => {
     return decompactZeroes(pixel.split("z").map(chunk => chunk[0] === "y" ? "0" + parseInt(chunk.slice(1), 34).toString() : parseInt(chunk, 34).toString()).join(""))
 }
 
-const pixelate: (string: string, seed: string) => {
-    pixel?: string | number,
+export const pixelate: (string: string, seed: string) => {
+    pixel?: string,
     error?: string
 } = (string, seed) => {
 
@@ -218,7 +218,7 @@ const pixelate: (string: string, seed: string) => {
     }
 }
 
-const unpixelate: (pixel: string, seed: string) => {
+export const unpixelate: (pixel: string, seed: string) => {
     result?: string,
     error?: string
 } = (pixel, seed) => {
@@ -243,7 +243,4 @@ const unpixelate: (pixel: string, seed: string) => {
     }
 }
 
-module.exports = {
-    pixelate,
-    unpixelate
-}
+export default module

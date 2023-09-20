@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.unpixelate = exports.pixelate = void 0;
 const debug = false;
 const alphaMap = [...("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(""))];
 const operations = {
@@ -189,6 +191,7 @@ const pixelate = (string, seed) => {
         pixel: compressPixel(workingString)
     };
 };
+exports.pixelate = pixelate;
 const unpixelate = (pixel, seed) => {
     const { formattedSeed, error } = formatSeed(seed);
     if (error || !formattedSeed)
@@ -205,7 +208,6 @@ const unpixelate = (pixel, seed) => {
         result: string
     };
 };
-module.exports = {
-    pixelate,
-    unpixelate
-};
+exports.unpixelate = unpixelate;
+exports.default = module;
+//# sourceMappingURL=index.js.map

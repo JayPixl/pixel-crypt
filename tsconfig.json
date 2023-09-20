@@ -3,17 +3,12 @@
   "include": [
     "src/**/*"
   ],
-  "exclude": [],
   "compilerOptions": {
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "declaration": true,
     "declarationMap": true,
+    "sourceMap": true,
     "esModuleInterop": true,
-    "module": "es2022",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "build",
     "skipLibCheck": true,

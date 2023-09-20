@@ -1,10 +1,10 @@
 {
   "name": "pixel-crypt",
-  "version": "0.1.14",
+  "version": "0.1.17",
   "description": "Simple two-way encryption algorithm to secure strings input.",
   "main": "build/index.js",
   "module": "build/index.js",
-  "types": "build/index.d.ts",
+  "types": "types/index.d.ts",
   "exports": {
     ".": {
       "import": "./build/index.js",
@@ -14,7 +14,8 @@
   },
   "files": [
     "build",
-    "src"
+    "src",
+    "types"
   ],
   "scripts": {
     "dev": "tsc",
